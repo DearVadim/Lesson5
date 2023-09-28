@@ -1,0 +1,44 @@
+package Massives;
+
+public class Main {
+    public static void main(String[] args) {
+
+        final byte UPPERBOUNDARRAY = 50;
+        final byte NUMBERRANGE = 50;
+
+        int[] numbers;
+        numbers = new int[UPPERBOUNDARRAY];
+
+        System.out.printf("Эта программа создает массив из %d элементов, заполняет их случайными числами от -%d до +%2$d и вычисляет итоговые показатели по ним.\n",
+                UPPERBOUNDARRAY, NUMBERRANGE);
+
+        byte NegativeNumbers=0, PostiveNumbers=0, ZerosNumbers=0;
+        int NegativeSum=0, PostiveSum=0;
+
+        // подготовка массива - заполнение случайными числами от -50 до 50
+        for(byte i=0; i<UPPERBOUNDARRAY; ++i){
+            numbers[i] = (int) (Math.random() * NUMBERRANGE*2 - NUMBERRANGE);
+            System.out.printf("%d-й элемент записывается равным %d\n", i+1, numbers[i]);
+        }
+
+        // подсчет показателей в массиве
+        for(byte i=0; i<UPPERBOUNDARRAY; ++i){
+            if(numbers[i]>0){
+                PostiveNumbers++;
+                PostiveSum = PostiveSum + numbers[i];
+            } else if (numbers[i]<0) {
+                NegativeNumbers++;
+                NegativeSum = NegativeSum + numbers[i];
+
+            }else ZerosNumbers++;
+        }
+
+        System.out.printf("Количество отрицательных элементов в массиве равно %d, а их сумма равна %d\n", NegativeNumbers, NegativeSum);
+        System.out.printf("Количество положительных элементов в массиве равно %d, а их сумма равна %d\n", PostiveNumbers, PostiveSum);
+        System.out.printf("Количество нулевых элементов в массиве равно %d, а их сумма равна 0\n", ZerosNumbers);
+
+        System.out.printf("Среднее по массиву равно %f\n", (float)(PostiveSum+NegativeSum)/UPPERBOUNDARRAY);
+
+        System.out.println("Программа завершена.");
+    }
+}
